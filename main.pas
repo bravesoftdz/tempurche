@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, mmsystem, IniFiles, Messages, SysUtils, Variants, Classes, Graphics,
-    Controls,
+  Controls,
   Forms,
   Dialogs, ExtCtrls, IdBaseComponent, IdComponent, IdUDPBase, IdUDPClient,
   IdSNMP, StdCtrls, ComCtrls;
@@ -28,6 +28,7 @@ type
     lblsrv2smoke: TLabel;
     lblsrv2water: TLabel;
     btn1: TButton;
+    Alerts: TRichEdit;
     procedure tmr1Timer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -101,7 +102,7 @@ var
   //stList : TStringList;
   TempCurrent, TempMin, TempMax, Port1, Port2: integer;
   IP1, IP2, BadEnergy, GoodEnergy, IceCube, NormalTemp, HellBurn, ClearAir,
-    Smoke, DryAsDesert, WaterFall,BadMonitoring: string;
+    Smoke, DryAsDesert, WaterFall, BadMonitoring: string;
 begin
   if not IsTruoble then
   begin
@@ -153,54 +154,49 @@ begin
   IdSNMP1.Query.MIBAdd(Format('1.3.6.1.4.1.35160.1.26.0', [i]), '');
   IdSNMP1.Query.PDUType := PDUGetRequest;
 
-
-   begin
-        with lblsrv1enrgy.Font do // Подбираем шрифт
-        begin
-          Color := clRed;
-          Size := 24;
-          Name := 'Times New Roman';
-          Style := [fsBold];
-        end;
-        lblsrv1enrgy.Caption := StringReplace(GoodEnergy, '@N', '1',
-          [rfReplaceAll, rfIgnoreCase]);
-      end;
-
+  with Alerts.Font do // Подбираем шрифт
+  begin
+    Color := clGreen;
+    Size := 24;
+    Name := 'Times New Roman';
+    Style := [fsBold];
+  end;
 
   if IdSNMP1.SendQuery then
     for i := 0 to IdSNMP1.Reply.ValueCount - 1 do
     begin
       AddLast(IdSNMP1.Reply.Value[i] = '1');
+      Alerts.Lines.Clear;
       if IsElectricGood() then
       begin
-        with lblsrv1enrgy.Font do // Подбираем шрифт
-        begin
-          Color := clGreen;
-          Size := 24;
-          Name := 'Times New Roman';
-          Style := [fsBold];
-        end;
-        lblsrv1enrgy.Caption := StringReplace(GoodEnergy, '@N', '1',
-          [rfReplaceAll, rfIgnoreCase]);
+        Alerts.Lines.Add(StringReplace(GoodEnergy, '@N', '1',
+          [rfReplaceAll, rfIgnoreCase]));
       end;
       if IdSNMP1.Reply.Value[i] = '0' then
       begin
-        with lblsrv1enrgy.Font do // Подбираем шрифт
-        begin
-          Color := clRed;
-          Size := 24;
-          Name := 'Times New Roman';
-          Style := [fsBold];
-        end;
-        lblsrv1enrgy.Caption := StringReplace(BadEnergy, '@N', '1',
-          [rfReplaceAll, rfIgnoreCase]);
+        Alerts.Lines.Add(StringReplace(BadEnergy, '@N', '1',
+          [rfReplaceAll, rfIgnoreCase]));
         IsTruoble := True;
       end;
     end
-  else  lblsrv1enrgy.Caption := StringReplace(BadMonitoring, '@N', '1',[rfReplaceAll, rfIgnoreCase]);
+  else
+  begin
+    Alerts.Lines.Clear;
+    Alerts.Lines.Add(StringReplace(BadMonitoring, '@N', '1', [rfReplaceAll,
+      rfIgnoreCase]));
+    with Alerts.Font do // Подбираем шрифт
+    begin
+      Color := clRed;
+      Size := 24;
+      Name := 'Times New Roman';
+      Style := [fsBold];
+    end;
+
+  end;
 
   IdSNMP1.Active := false;
   //Конец опроса № 1
+
   //Начало запроса № 2           1.3.6.1.4.1.35160.1.16.1.13.1
   IdSNMP1.active := true;
   IdSNMP1.Query.Clear;
@@ -215,55 +211,49 @@ begin
         TempCurrent := StrToInt(IdSNMP1.Reply.Value[i]);
         if TempCurrent < TempMin then
         begin
-          with lblsrv1temp.Font do // Подбираем шрифт
+          with Alerts.Font do // Подбираем шрифт
           begin
             Color := clBlue;
             Size := 24;
             Name := 'Times New Roman';
             Style := [fsBold];
           end;
-          lblsrv1temp.Caption := StringReplace(StringReplace(IceCube, '@N', '1',
-            [rfReplaceAll, rfIgnoreCase]), '@T',
+          Alerts.Lines.Add(StringReplace(StringReplace(IceCube, '@N', '1', [rfReplaceAll, rfIgnoreCase]), '@T',
             FloatToStr(TempCurrent / 10), [rfReplaceAll,
-            rfIgnoreCase]);
+            rfIgnoreCase]));
           IsTruoble := True;
         end;
         if (TempCurrent >= TempMin) and (TempCurrent <= TempMax) then
         begin
-          with lblsrv1temp.Font do // Подбираем шрифт
-          begin
-            Color := clGreen;
-            Size := 24;
-            Name := 'Times New Roman';
-            Style := [fsBold];
-          end;
-          lblsrv1temp.Caption := StringReplace(StringReplace(NormalTemp, '@N',
+          Alerts.Lines.Add(StringReplace(StringReplace(NormalTemp, '@N',
             '1',
             [rfReplaceAll, rfIgnoreCase]), '@T',
             FloatToStr(TempCurrent / 10), [rfReplaceAll,
-            rfIgnoreCase]);
+            rfIgnoreCase]));
         end;
         if TempCurrent > TempMax then
         begin
-          with lblsrv1temp.Font do // Подбираем шрифт
+          with Alerts.Font do // Подбираем шрифт
           begin
             Color := clRed;
             Size := 24;
             Name := 'Times New Roman';
             Style := [fsBold];
           end;
-          lblsrv1temp.Caption := StringReplace(StringReplace(HellBurn, '@N',
+          Alerts.Lines.Add(StringReplace(StringReplace(HellBurn, '@N',
             '1',
             [rfReplaceAll, rfIgnoreCase]), '@T',
             FloatToStr(TempCurrent / 10), [rfReplaceAll,
-            rfIgnoreCase]);
+            rfIgnoreCase]));
           IsTruoble := True;
         end;
       except
         //      TempCurrent:= Round((TempMin + TempMax)/2);
       end;
-      end
-  else  lblsrv1enrgy.Caption := StringReplace(BadMonitoring, '@N', '1',[rfReplaceAll, rfIgnoreCase]);
+    end
+  else
+    lblsrv1enrgy.Caption := StringReplace(BadMonitoring, '@N', '1',
+      [rfReplaceAll, rfIgnoreCase]);
 
   IdSNMP1.Active := false;
   //Конец опроса № 2
@@ -279,31 +269,26 @@ begin
     begin
       if IdSNMP1.Reply.Value[i] = '1' then
       begin
-        with lblsrv1smoke.Font do // Подбираем шрифт
-        begin
-          Color := clGreen;
-          Size := 24;
-          Name := 'Times New Roman';
-          Style := [fsBold];
-        end;
-        lblsrv1smoke.Caption := StringReplace(ClearAir, '@N', '1',
-          [rfReplaceAll, rfIgnoreCase]);
+        Alerts.Lines.Add( StringReplace(ClearAir, '@N', '1',
+          [rfReplaceAll, rfIgnoreCase]));
       end;
       if IdSNMP1.Reply.Value[i] = '0' then
       begin
-        with lblsrv1smoke.Font do // Подбираем шрифт
+        with Alerts.Font do // Подбираем шрифт
         begin
           Color := clRed;
           Size := 24;
           Name := 'Times New Roman';
           Style := [fsBold];
         end;
-        lblsrv1smoke.Caption := StringReplace(Smoke, '@N', '1', [rfReplaceAll,
-          rfIgnoreCase]);
+         Alerts.Lines.Add( StringReplace(Smoke, '@N', '1', [rfReplaceAll,
+          rfIgnoreCase]));
         IsTruoble := True;
       end;
-     end
-  else  lblsrv1enrgy.Caption := StringReplace(BadMonitoring, '@N', '1',[rfReplaceAll, rfIgnoreCase]);
+    end
+  else
+    lblsrv1enrgy.Caption := StringReplace(BadMonitoring, '@N', '1',
+      [rfReplaceAll, rfIgnoreCase]);
   IdSNMP1.Active := false;
   //Конец опроса № 3
    //Начало запроса № 4
@@ -318,15 +303,8 @@ begin
     begin
       if IdSNMP1.Reply.Value[i] = '1' then
       begin
-        with lblsrv1water.Font do // Подбираем шрифт
-        begin
-          Color := clGreen;
-          Size := 24;
-          Name := 'Times New Roman';
-          Style := [fsBold];
-        end;
-        lblsrv1water.Caption := StringReplace(DryAsDesert, '@N', '1',
-          [rfReplaceAll, rfIgnoreCase]);
+       Alerts.Lines.Add( StringReplace(DryAsDesert, '@N', '1',
+          [rfReplaceAll, rfIgnoreCase]));
       end;
       if IdSNMP1.Reply.Value[i] = '0' then
       begin
@@ -341,28 +319,28 @@ begin
           [rfReplaceAll, rfIgnoreCase]);
         IsTruoble := True;
       end;
-     end
-  else  lblsrv1enrgy.Caption := StringReplace(BadMonitoring, '@N', '1',[rfReplaceAll, rfIgnoreCase]);
+    end
+  else
+    lblsrv1enrgy.Caption := StringReplace(BadMonitoring, '@N', '1',
+      [rfReplaceAll, rfIgnoreCase]);
   IdSNMP1.Active := false;
   //Конец опроса № 4
 
    //Серверная № 2
 
+  begin
+    with lblsrv2enrgy.Font do // Подбираем шрифт
+    begin
+      Color := clRed;
+      Size := 24;
+      Name := 'Times New Roman';
+      Style := [fsBold];
+    end;
+    lblsrv1enrgy.Caption := StringReplace(GoodEnergy, '@N', '1',
+      [rfReplaceAll, rfIgnoreCase]);
+  end;
 
-   
-   begin
-        with lblsrv2enrgy.Font do // Подбираем шрифт
-        begin
-          Color := clRed;
-          Size := 24;
-          Name := 'Times New Roman';
-          Style := [fsBold];
-        end;
-        lblsrv1enrgy.Caption := StringReplace(GoodEnergy, '@N', '1',
-          [rfReplaceAll, rfIgnoreCase]);
-      end;
-
-   //Начало запроса № 1
+  //Начало запроса № 1
   IdSNMP1.active := true;
   IdSNMP1.Query.Clear;
   IdSNMP1.Query.Host := IP2;
@@ -398,8 +376,10 @@ begin
           [rfReplaceAll, rfIgnoreCase]);
         IsTruoble := True;
       end;
-     end
-  else  lblsrv2enrgy.Caption := StringReplace(BadMonitoring, '@N', '2',[rfReplaceAll, rfIgnoreCase]);
+    end
+  else
+    lblsrv2enrgy.Caption := StringReplace(BadMonitoring, '@N', '2',
+      [rfReplaceAll, rfIgnoreCase]);
   //Конец опроса № 1
   IdSNMP1.Active := false;
   IdSNMP1.active := true;
@@ -463,8 +443,10 @@ begin
       except
         // TempCurrent:= Round((TempMin + TempMax)/2);
       end;
-       end
-  else  lblsrv2enrgy.Caption := StringReplace(BadMonitoring, '@N', '2',[rfReplaceAll, rfIgnoreCase]);
+    end
+  else
+    lblsrv2enrgy.Caption := StringReplace(BadMonitoring, '@N', '2',
+      [rfReplaceAll, rfIgnoreCase]);
 
   IdSNMP1.Active := false;
   //Конец опроса № 2
@@ -541,8 +523,10 @@ begin
           [rfReplaceAll, rfIgnoreCase]);
         IsTruoble := True;
       end;
-        end
-  else  lblsrv2enrgy.Caption := StringReplace(BadMonitoring, '@N', '2',[rfReplaceAll, rfIgnoreCase]);
+    end
+  else
+    lblsrv2enrgy.Caption := StringReplace(BadMonitoring, '@N', '2',
+      [rfReplaceAll, rfIgnoreCase]);
 
   IdSNMP1.Active := false;
   //Конец опроса № 4

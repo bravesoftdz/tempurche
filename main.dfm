@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 552
-  Top = 27
+  Left = 356
+  Top = 113
   BorderStyle = bsSingle
   Caption = #1052#1086#1085#1080#1090#1086#1088#1080#1085#1075
-  ClientHeight = 980
+  ClientHeight = 882
   ClientWidth = 1048
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -219,6 +219,15 @@ object Form1: TForm1
     TabOrder = 3
     Visible = False
     OnClick = btn1Click
+  end
+  object Alerts: TRichEdit
+    Left = 568
+    Top = 280
+    Width = 329
+    Height = 321
+    Lines.Strings = (
+      'Alerts')
+    TabOrder = 4
   end
   object IdSNMP1: TIdSNMP
     ReceiveTimeout = 500
