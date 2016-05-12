@@ -111,42 +111,42 @@ begin
   end;
   TempMin := IniFile.ReadInteger('Options', 'TempMin', 10) * 10;
   TempMax := IniFile.ReadInteger('Options', 'TempMax', 27) * 10;
-  IP1 := IniFile.ReadString('Options', 'IP1', '192.168.50.164');
+  IP1 := IniFile.ReadString('Options', 'IP1', '192.168.0.1');
   Port1 := IniFile.ReadInteger('Options', 'Port1', 161);
-  IP2 := IniFile.ReadString('Options', 'IP2', '192.168.50.163');
+  IP2 := IniFile.ReadString('Options', 'IP2', '192.168.0.2');
   Port2 := IniFile.ReadInteger('Options', 'Port2', 161);
   BadEnergy := IniFile.ReadString('Options', 'BadEnergy',
-    'В серверной @N нет электричества, возможно его спиздили');
+    'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г­ГҐГІ ГЅГ«ГҐГЄГІГ°ГЁГ·ГҐГ±ГІГўГ , ГўГ®Г§Г¬Г®Г¦Г­Г® ГҐГЈГ® Г±ГЇГЁГ§Г¤ГЁГ«ГЁ');
   GoodEnergy := IniFile.ReadString('Options', 'GoodEnergy',
-    'В серверной @N есть электричество, но расслабляться не стоит');
+    'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N ГҐГ±ГІГј ГЅГ«ГҐГЄГІГ°ГЁГ·ГҐГ±ГІГўГ®, Г­Г® Г°Г Г±Г±Г«Г ГЎГ«ГїГІГјГ±Гї Г­ГҐ Г±ГІГ®ГЁГІ');
   IceCube := IniFile.ReadString('Options', 'IceCube',
-    'В серверной @N очень холодно - @T, возможно зима и спиздили стену');
+    'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г®Г·ГҐГ­Гј ГµГ®Г«Г®Г¤Г­Г® - @T, ГўГ®Г§Г¬Г®Г¦Г­Г® Г§ГЁГ¬Г  ГЁ Г±ГЇГЁГ§Г¤ГЁГ«ГЁ Г±ГІГҐГ­Гі');
   NormalTemp := IniFile.ReadString('Options', 'NormalTemp',
-    'В серверной @N нормальная температура - @T, возможно спиздили сервер и нечему нагреваться');
+    'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г­Г®Г°Г¬Г Г«ГјГ­Г Гї ГІГҐГ¬ГЇГҐГ°Г ГІГіГ°Г  - @T, ГўГ®Г§Г¬Г®Г¦Г­Г® Г±ГЇГЁГ§Г¤ГЁГ«ГЁ Г±ГҐГ°ГўГҐГ° ГЁ Г­ГҐГ·ГҐГ¬Гі Г­Г ГЈГ°ГҐГўГ ГІГјГ±Гї');
   HellBurn := IniFile.ReadString('Options', 'HellBurn',
-    'В серверной @N очень жарко - @T, возможно спиздили кондиционер или даже 2');
+    'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г®Г·ГҐГ­Гј Г¦Г Г°ГЄГ® - @T, ГўГ®Г§Г¬Г®Г¦Г­Г® Г±ГЇГЁГ§Г¤ГЁГ«ГЁ ГЄГ®Г­Г¤ГЁГ¶ГЁГ®Г­ГҐГ° ГЁГ«ГЁ Г¤Г Г¦ГҐ 2');
   ClearAir := IniFile.ReadString('Options', 'ClearAir',
-    'В серверной @N ничего не дымит, возможно дымить уже нечему');
+    'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г­ГЁГ·ГҐГЈГ® Г­ГҐ Г¤Г»Г¬ГЁГІ, ГўГ®Г§Г¬Г®Г¦Г­Г® Г¤Г»Г¬ГЁГІГј ГіГ¦ГҐ Г­ГҐГ·ГҐГ¬Гі');
   Smoke := IniFile.ReadString('Options', 'Smoke',
-    'В серверной @N чад кутежа и угара,сервера сейчас угорят');
+    'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г·Г Г¤ ГЄГіГІГҐГ¦Г  ГЁ ГіГЈГ Г°Г ,Г±ГҐГ°ГўГҐГ°Г  Г±ГҐГ©Г·Г Г± ГіГЈГ®Г°ГїГІ');
   DryAsDesert := IniFile.ReadString('Options', 'DryAsDesert',
-    'В серверной @N сухов, возможно спиздили водопровод');
+    'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г±ГіГµГ®Гў, ГўГ®Г§Г¬Г®Г¦Г­Г® Г±ГЇГЁГ§Г¤ГЁГ«ГЁ ГўГ®Г¤Г®ГЇГ°Г®ГўГ®Г¤');
   WaterFall := IniFile.ReadString('Options', 'WaterFall',
-    'В серверной @N райские водопады, сервера скоро будут в раю');
+    'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г°Г Г©Г±ГЄГЁГҐ ГўГ®Г¤Г®ГЇГ Г¤Г», Г±ГҐГ°ГўГҐГ°Г  Г±ГЄГ®Г°Г® ГЎГіГ¤ГіГІ Гў Г°Г Гѕ');
   BadMonitoring := IniFile.ReadString('Options', 'BadMonitoring',
-    'Устройство мониторинга в серверной @N не отвечает, ну ты понял ... да ?');
+    'Г“Г±ГІГ°Г®Г©Г±ГІГўГ® Г¬Г®Г­ГЁГІГ®Г°ГЁГ­ГЈГ  Гў Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г­ГҐ Г®ГІГўГҐГ·Г ГҐГІ, Г­Гі ГІГ» ГЇГ®Г­ГїГ« ... Г¤Г  ?');
   //
   IsTruoble := False;
   IdSNMP1.active := true;
-  //Серверная № 1
+  //Г‘ГҐГ°ГўГҐГ°Г­Г Гї В№ 1
   IdSNMP1.Query.Clear;
   IdSNMP1.Query.Host := IP1;
   IdSNMP1.Query.Port := Port1;
-  //Начало запроса № 1
+  //ГЌГ Г·Г Г«Г® Г§Г ГЇГ°Г®Г±Г  В№ 1
   IdSNMP1.Query.MIBAdd(Format('1.3.6.1.4.1.35160.1.26.0', [i]), '');
   IdSNMP1.Query.PDUType := PDUGetRequest;
 
-  with Alerts.Font do // Подбираем шрифт
+  with Alerts.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
   begin
     Color := clGreen;
     Size := 24;
@@ -154,7 +154,7 @@ begin
     Style := [fsBold];
   end;
 
-  lblsrv1enrgy.Caption :='Проверка электропитания';
+  lblsrv1enrgy.Caption :='ГЏГ°Г®ГўГҐГ°ГЄГ  ГЅГ«ГҐГЄГІГ°Г®ГЇГЁГІГ Г­ГЁГї';
   Application.ProcessMessages;
 
   if IdSNMP1.SendQuery then
@@ -180,7 +180,7 @@ begin
     Alerts.Lines.Clear;
     Alerts.Lines.Add(StringReplace(BadMonitoring, '@N', '1', [rfReplaceAll,
       rfIgnoreCase]));
-    with Alerts.Font do // Подбираем шрифт
+    with Alerts.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
     begin
       Color := clRed;
       Size := 24;
@@ -191,9 +191,9 @@ begin
   end;
 
   IdSNMP1.Active := false;
-  //Конец опроса № 1
+  //ГЉГ®Г­ГҐГ¶ Г®ГЇГ°Г®Г±Г  В№ 1
 
-  //Начало запроса № 2           1.3.6.1.4.1.35160.1.16.1.13.1
+  //ГЌГ Г·Г Г«Г® Г§Г ГЇГ°Г®Г±Г  В№ 2           1.3.6.1.4.1.35160.1.16.1.13.1
   IdSNMP1.active := true;
   IdSNMP1.Query.Clear;
   IdSNMP1.Query.Host := IP1;
@@ -201,7 +201,7 @@ begin
   IdSNMP1.Query.MIBAdd(Format('1.3.6.1.4.1.35160.1.16.1.13.1', [i]), '');
   IdSNMP1.Query.PDUType := PDUGetRequest;
 
-  lblsrv1enrgy.Caption :='Проверка температуры';
+  lblsrv1enrgy.Caption :='ГЏГ°Г®ГўГҐГ°ГЄГ  ГІГҐГ¬ГЇГҐГ°Г ГІГіГ°Г»';
   Application.ProcessMessages;
 
  if IdSNMP1.SendQuery then
@@ -211,7 +211,7 @@ begin
         TempCurrent := StrToInt(IdSNMP1.Reply.Value[i]);
         if TempCurrent < TempMin then
         begin
-          with Alerts.Font do // Подбираем шрифт
+          with Alerts.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
           begin
             Color := clBlue;
             Size := 24;
@@ -233,7 +233,7 @@ begin
         end;
         if TempCurrent > TempMax then
         begin
-          with Alerts.Font do // Подбираем шрифт
+          with Alerts.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
           begin
             Color := clRed;
             Size := 24;
@@ -256,7 +256,7 @@ begin
     Alerts.Lines.Clear;
     Alerts.Lines.Add(StringReplace(BadMonitoring, '@N', '1', [rfReplaceAll,
       rfIgnoreCase]));
-    with Alerts.Font do // Подбираем шрифт
+    with Alerts.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
     begin
       Color := clRed;
       Size := 24;
@@ -267,8 +267,8 @@ begin
   end;
 
   IdSNMP1.Active := false;
-  //Конец опроса № 2
-  //Начало запроса № 3
+  //ГЉГ®Г­ГҐГ¶ Г®ГЇГ°Г®Г±Г  В№ 2
+  //ГЌГ Г·Г Г«Г® Г§Г ГЇГ°Г®Г±Г  В№ 3
   IdSNMP1.active := true;
   IdSNMP1.Query.Clear;
   IdSNMP1.Query.Host := IP1;
@@ -276,7 +276,7 @@ begin
   IdSNMP1.Query.MIBAdd(Format('1.3.6.1.4.1.35160.1.15.1.7.2', [i]), '');
   IdSNMP1.Query.PDUType := PDUGetRequest;
 
-  lblsrv1enrgy.Caption :='Проверка датчика дыма';
+  lblsrv1enrgy.Caption :='ГЏГ°Г®ГўГҐГ°ГЄГ  Г¤Г ГІГ·ГЁГЄГ  Г¤Г»Г¬Г ';
   Application.ProcessMessages;
 
   if IdSNMP1.SendQuery then
@@ -289,7 +289,7 @@ begin
       end;
       if IdSNMP1.Reply.Value[i] = '0' then
       begin
-        with Alerts.Font do // Подбираем шрифт
+        with Alerts.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
         begin
           Color := clRed;
           Size := 24;
@@ -306,7 +306,7 @@ begin
     Alerts.Lines.Clear;
     Alerts.Lines.Add(StringReplace(BadMonitoring, '@N', '1', [rfReplaceAll,
       rfIgnoreCase]));
-    with Alerts.Font do // Подбираем шрифт
+    with Alerts.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
     begin
       Color := clRed;
       Size := 24;
@@ -316,9 +316,9 @@ begin
 
   end;
   IdSNMP1.Active := false;
-  //Конец опроса № 3
+  //ГЉГ®Г­ГҐГ¶ Г®ГЇГ°Г®Г±Г  В№ 3
 
-   //Начало запроса № 4
+   //ГЌГ Г·Г Г«Г® Г§Г ГЇГ°Г®Г±Г  В№ 4
   IdSNMP1.active := true;
   IdSNMP1.Query.Clear;
   IdSNMP1.Query.Host := IP1;
@@ -326,7 +326,7 @@ begin
   IdSNMP1.Query.MIBAdd(Format('1.3.6.1.4.1.35160.1.15.1.7.1', [i]), '');
   IdSNMP1.Query.PDUType := PDUGetRequest;
 
-  lblsrv1enrgy.Caption :='Проверка датчика воды';
+  lblsrv1enrgy.Caption :='ГЏГ°Г®ГўГҐГ°ГЄГ  Г¤Г ГІГ·ГЁГЄГ  ГўГ®Г¤Г»';
   Application.ProcessMessages;
 
   if IdSNMP1.SendQuery then
@@ -339,7 +339,7 @@ begin
       end;
       if IdSNMP1.Reply.Value[i] = '0' then
       begin
-        with Alerts.Font do // Подбираем шрифт
+        with Alerts.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
         begin
           Color := clRed;
           Size := 24;
@@ -356,7 +356,7 @@ begin
     Alerts.Lines.Clear;
     Alerts.Lines.Add(StringReplace(BadMonitoring, '@N', '1', [rfReplaceAll,
       rfIgnoreCase]));
-    with Alerts.Font do // Подбираем шрифт
+    with Alerts.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
     begin
       Color := clRed;
       Size := 24;
@@ -366,15 +366,15 @@ begin
 
   end;
   IdSNMP1.Active := false;
-  //Конец опроса № 4
+  //ГЉГ®Г­ГҐГ¶ Г®ГЇГ°Г®Г±Г  В№ 4
 
 
-  lblsrv1enrgy.Caption := 'Ожидание обновления';
+  lblsrv1enrgy.Caption := 'ГЋГ¦ГЁГ¤Г Г­ГЁГҐ Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї';
 
- {  //Серверная № 2
+ {  //Г‘ГҐГ°ГўГҐГ°Г­Г Гї В№ 2
 
   begin
-    with lblsrv2enrgy.Font do // Подбираем шрифт
+    with lblsrv2enrgy.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
     begin
       Color := clRed;
       Size := 24;
@@ -385,7 +385,7 @@ begin
       [rfReplaceAll, rfIgnoreCase]);
   end;
 
-  //Начало запроса № 1
+  //ГЌГ Г·Г Г«Г® Г§Г ГЇГ°Г®Г±Г  В№ 1
   IdSNMP1.active := true;
   IdSNMP1.Query.Clear;
   IdSNMP1.Query.Host := IP2;
@@ -398,7 +398,7 @@ begin
       AddLast2(IdSNMP1.Reply.Value[i] = '1');
       if IsElectricGood2() then
       begin
-        with lblsrv2enrgy.Font do // Подбираем шрифт
+        with lblsrv2enrgy.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
         begin
           Color := clGreen;
           Size := 24;
@@ -410,7 +410,7 @@ begin
       end;
       if IdSNMP1.Reply.Value[i] = '0' then
       begin
-        with lblsrv2enrgy.Font do // Подбираем шрифт
+        with lblsrv2enrgy.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
         begin
           Color := clRed;
           Size := 24;
@@ -425,10 +425,10 @@ begin
   else
     lblsrv2enrgy.Caption := StringReplace(BadMonitoring, '@N', '2',
       [rfReplaceAll, rfIgnoreCase]);
-  //Конец опроса № 1
+  //ГЉГ®Г­ГҐГ¶ Г®ГЇГ°Г®Г±Г  В№ 1
   IdSNMP1.Active := false;
   IdSNMP1.active := true;
-  //Начало запроса № 2           1.3.6.1.4.1.35160.1.16.1.13.1
+  //ГЌГ Г·Г Г«Г® Г§Г ГЇГ°Г®Г±Г  В№ 2           1.3.6.1.4.1.35160.1.16.1.13.1
   IdSNMP1.Query.Clear;
   IdSNMP1.Query.Host := IP2;
   IdSNMP1.Query.Port := Port2;
@@ -441,7 +441,7 @@ begin
         TempCurrent := StrToInt(IdSNMP1.Reply.Value[i]);
         if TempCurrent < TempMin then
         begin
-          with lblsrv2temp.Font do // Подбираем шрифт
+          with lblsrv2temp.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
           begin
             Color := clBlue;
             Size := 24;
@@ -456,7 +456,7 @@ begin
         end;
         if (TempCurrent >= TempMin) and (TempCurrent <= TempMax) then
         begin
-          with lblsrv2temp.Font do // Подбираем шрифт
+          with lblsrv2temp.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
           begin
             Color := clGreen;
             Size := 24;
@@ -471,7 +471,7 @@ begin
         end;
         if TempCurrent > TempMax then
         begin
-          with lblsrv2temp.Font do // Подбираем шрифт
+          with lblsrv2temp.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
           begin
             Color := clRed;
             Size := 24;
@@ -494,8 +494,8 @@ begin
       [rfReplaceAll, rfIgnoreCase]);
 
   IdSNMP1.Active := false;
-  //Конец опроса № 2
- //Начало запроса № 3
+  //ГЉГ®Г­ГҐГ¶ Г®ГЇГ°Г®Г±Г  В№ 2
+ //ГЌГ Г·Г Г«Г® Г§Г ГЇГ°Г®Г±Г  В№ 3
   IdSNMP1.active := true;
   IdSNMP1.Query.Clear;
   IdSNMP1.Query.Host := IP2;
@@ -507,7 +507,7 @@ begin
     begin
       if IdSNMP1.Reply.Value[i] = '1' then
       begin
-        with lblsrv2smoke.Font do // Подбираем шрифт
+        with lblsrv2smoke.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
         begin
           Color := clGreen;
           Size := 24;
@@ -519,7 +519,7 @@ begin
       end;
       if IdSNMP1.Reply.Value[i] = '0' then
       begin
-        with lblsrv2smoke.Font do // Подбираем шрифт
+        with lblsrv2smoke.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
         begin
           Color := clRed;
           Size := 24;
@@ -532,8 +532,8 @@ begin
       end;
     end;
   IdSNMP1.Active := false;
-  //Конец опроса № 3
-   //Начало запроса № 4
+  //ГЉГ®Г­ГҐГ¶ Г®ГЇГ°Г®Г±Г  В№ 3
+   //ГЌГ Г·Г Г«Г® Г§Г ГЇГ°Г®Г±Г  В№ 4
   IdSNMP1.active := true;
   IdSNMP1.Query.Clear;
   IdSNMP1.Query.Host := IP2;
@@ -545,7 +545,7 @@ begin
     begin
       if IdSNMP1.Reply.Value[i] = '1' then
       begin
-        with lblsrv2water.Font do // Подбираем шрифт
+        with lblsrv2water.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
         begin
           Color := clGreen;
           Size := 24;
@@ -557,7 +557,7 @@ begin
       end;
       if IdSNMP1.Reply.Value[i] = '0' then
       begin
-        with lblsrv2water.Font do // Подбираем шрифт
+        with lblsrv2water.Font do // ГЏГ®Г¤ГЎГЁГ°Г ГҐГ¬ ГёГ°ГЁГґГІ
         begin
           Color := clRed;
           Size := 24;
@@ -574,7 +574,7 @@ begin
       [rfReplaceAll, rfIgnoreCase]);
 
   IdSNMP1.Active := false;
-  //Конец опроса № 4     }
+  //ГЉГ®Г­ГҐГ¶ Г®ГЇГ°Г®Г±Г  В№ 4     }
 
   PlaySound(nil, 0, SND_PURGE);
   if IsTruoble then
@@ -616,7 +616,7 @@ begin
   if not FileExists('.\config.ini') then
   begin
     IniFile.WriteBool('Options', 'SoundOn', True);
-    { Секция Options: Sound:=true }
+    { Г‘ГҐГЄГ¶ГЁГї Options: Sound:=true }
     IniFile.WriteInteger('Options', 'TempMin', 10);
     IniFile.WriteInteger('Options', 'TempMax', 27);
     IniFile.WriteString('Options', 'IP1', '192.168.50.164');
@@ -625,27 +625,27 @@ begin
     IniFile.WriteString('Options', 'IP2', '192.168.50.163');
     IniFile.WriteInteger('Options', 'Port2', 161);
     IniFile.WriteString('Options', 'BadEnergy',
-      'В серверной @N нет электричества');
+      'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г­ГҐГІ ГЅГ«ГҐГЄГІГ°ГЁГ·ГҐГ±ГІГўГ ');
     IniFile.WriteString('Options', 'GoodEnergy',
-      'В серверной @N есть электричество');
+      'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N ГҐГ±ГІГј ГЅГ«ГҐГЄГІГ°ГЁГ·ГҐГ±ГІГўГ®');
     IniFile.WriteString('Options', 'IceCube',
-      'В серверной @N очень холодно - @T');
+      'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г®Г·ГҐГ­Гј ГµГ®Г«Г®Г¤Г­Г® - @T');
     IniFile.WriteString('Options', 'NormalTemp',
-      'В серверной @N нормальная температура - @T');
+      'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г­Г®Г°Г¬Г Г«ГјГ­Г Гї ГІГҐГ¬ГЇГҐГ°Г ГІГіГ°Г  - @T');
     IniFile.WriteString('Options', 'HellBurn',
-      'В серверной @N очень жарко - @T');
-    IniFile.WriteString('Options', 'ClearAir', 'В серверной @N все ОК');
-    IniFile.WriteString('Options', 'Smoke', 'В серверной @N задымление!!!!');
-    IniFile.WriteString('Options', 'DryAsDesert', 'В серверной @N все ОК');
-    IniFile.WriteString('Options', 'WaterFall', 'В серверной @N затопление!!!');
-    IniFile.WriteString('Phones', 'Электрик', '8 911 946 81 84');
+      'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г®Г·ГҐГ­Гј Г¦Г Г°ГЄГ® - @T');
+    IniFile.WriteString('Options', 'ClearAir', 'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N ГўГ±ГҐ ГЋГЉ');
+    IniFile.WriteString('Options', 'Smoke', 'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г§Г Г¤Г»Г¬Г«ГҐГ­ГЁГҐ!!!!');
+    IniFile.WriteString('Options', 'DryAsDesert', 'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N ГўГ±ГҐ ГЋГЉ');
+    IniFile.WriteString('Options', 'WaterFall', 'Г‚ Г±ГҐГ°ГўГҐГ°Г­Г®Г© @N Г§Г ГІГ®ГЇГ«ГҐГ­ГЁГҐ!!!');
+    IniFile.WriteString('Phones', 'ГќГ«ГҐГЄГІГ°ГЁГЄ', '8 911 946 81 84');
   end;
   tmr1.Interval := IniFile.ReadInteger('Options', 'Interval', 161) * 1000;
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
-  IniFile.Free; { Закрыли файл, уничтожили объект и освободили память }
+  IniFile.Free; { Г‡Г ГЄГ°Г»Г«ГЁ ГґГ Г©Г«, ГіГ­ГЁГ·ГІГ®Г¦ГЁГ«ГЁ Г®ГЎГєГҐГЄГІ ГЁ Г®Г±ГўГ®ГЎГ®Г¤ГЁГ«ГЁ ГЇГ Г¬ГїГІГј }
 end;
 
 procedure TForm1.tmr2Timer(Sender: TObject);
