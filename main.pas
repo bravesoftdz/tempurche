@@ -14,19 +14,11 @@ type
     IdSNMP1: TIdSNMP;
     tmr1: TTimer;
     lbl1: TLabel;
-    lbl2: TLabel;
     lblsrv1enrgy: TLabel;
-    lblsrv1temp: TLabel;
-    lblsrv2enrgy: TLabel;
-    lblsrv2temp: TLabel;
     SoundOn: TCheckBox;
     tmr2: TTimer;
     txt1: TStaticText;
     Phones: TRichEdit;
-    lblsrv1water: TLabel;
-    lblsrv1smoke: TLabel;
-    lblsrv2smoke: TLabel;
-    lblsrv2water: TLabel;
     btn1: TButton;
     Alerts: TRichEdit;
     procedure tmr1Timer(Sender: TObject);
@@ -162,9 +154,13 @@ begin
     Style := [fsBold];
   end;
 
+  lblsrv1enrgy.Caption :='Проверка электропитания';
+  Application.ProcessMessages;
+
   if IdSNMP1.SendQuery then
     for i := 0 to IdSNMP1.Reply.ValueCount - 1 do
     begin
+
       AddLast(IdSNMP1.Reply.Value[i] = '1');
       Alerts.Lines.Clear;
       if IsElectricGood() then
@@ -204,7 +200,11 @@ begin
   IdSNMP1.Query.Port := Port1;
   IdSNMP1.Query.MIBAdd(Format('1.3.6.1.4.1.35160.1.16.1.13.1', [i]), '');
   IdSNMP1.Query.PDUType := PDUGetRequest;
-  if IdSNMP1.SendQuery then
+
+  lblsrv1enrgy.Caption :='Проверка температуры';
+  Application.ProcessMessages;
+
+ if IdSNMP1.SendQuery then
     for i := 0 to IdSNMP1.Reply.ValueCount - 1 do
     begin
       try
@@ -252,8 +252,19 @@ begin
       end;
     end
   else
-    lblsrv1enrgy.Caption := StringReplace(BadMonitoring, '@N', '1',
-      [rfReplaceAll, rfIgnoreCase]);
+    begin
+    Alerts.Lines.Clear;
+    Alerts.Lines.Add(StringReplace(BadMonitoring, '@N', '1', [rfReplaceAll,
+      rfIgnoreCase]));
+    with Alerts.Font do // Подбираем шрифт
+    begin
+      Color := clRed;
+      Size := 24;
+      Name := 'Times New Roman';
+      Style := [fsBold];
+    end;
+
+  end;
 
   IdSNMP1.Active := false;
   //Конец опроса № 2
@@ -264,6 +275,10 @@ begin
   IdSNMP1.Query.Port := Port1;
   IdSNMP1.Query.MIBAdd(Format('1.3.6.1.4.1.35160.1.15.1.7.2', [i]), '');
   IdSNMP1.Query.PDUType := PDUGetRequest;
+
+  lblsrv1enrgy.Caption :='Проверка датчика дыма';
+  Application.ProcessMessages;
+
   if IdSNMP1.SendQuery then
     for i := 0 to IdSNMP1.Reply.ValueCount - 1 do
     begin
@@ -287,10 +302,22 @@ begin
       end;
     end
   else
-    lblsrv1enrgy.Caption := StringReplace(BadMonitoring, '@N', '1',
-      [rfReplaceAll, rfIgnoreCase]);
+   begin
+    Alerts.Lines.Clear;
+    Alerts.Lines.Add(StringReplace(BadMonitoring, '@N', '1', [rfReplaceAll,
+      rfIgnoreCase]));
+    with Alerts.Font do // Подбираем шрифт
+    begin
+      Color := clRed;
+      Size := 24;
+      Name := 'Times New Roman';
+      Style := [fsBold];
+    end;
+
+  end;
   IdSNMP1.Active := false;
   //Конец опроса № 3
+
    //Начало запроса № 4
   IdSNMP1.active := true;
   IdSNMP1.Query.Clear;
@@ -298,6 +325,10 @@ begin
   IdSNMP1.Query.Port := Port1;
   IdSNMP1.Query.MIBAdd(Format('1.3.6.1.4.1.35160.1.15.1.7.1', [i]), '');
   IdSNMP1.Query.PDUType := PDUGetRequest;
+
+  lblsrv1enrgy.Caption :='Проверка датчика воды';
+  Application.ProcessMessages;
+
   if IdSNMP1.SendQuery then
     for i := 0 to IdSNMP1.Reply.ValueCount - 1 do
     begin
@@ -308,25 +339,39 @@ begin
       end;
       if IdSNMP1.Reply.Value[i] = '0' then
       begin
-        with lblsrv1water.Font do // Подбираем шрифт
+        with Alerts.Font do // Подбираем шрифт
         begin
           Color := clRed;
           Size := 24;
           Name := 'Times New Roman';
           Style := [fsBold];
         end;
-        lblsrv1water.Caption := StringReplace(WaterFall, '@N', '1',
-          [rfReplaceAll, rfIgnoreCase]);
+        Alerts.Lines.Add( StringReplace(WaterFall, '@N', '1',
+          [rfReplaceAll, rfIgnoreCase]));
         IsTruoble := True;
       end;
     end
   else
-    lblsrv1enrgy.Caption := StringReplace(BadMonitoring, '@N', '1',
-      [rfReplaceAll, rfIgnoreCase]);
+   begin
+    Alerts.Lines.Clear;
+    Alerts.Lines.Add(StringReplace(BadMonitoring, '@N', '1', [rfReplaceAll,
+      rfIgnoreCase]));
+    with Alerts.Font do // Подбираем шрифт
+    begin
+      Color := clRed;
+      Size := 24;
+      Name := 'Times New Roman';
+      Style := [fsBold];
+    end;
+
+  end;
   IdSNMP1.Active := false;
   //Конец опроса № 4
 
-   //Серверная № 2
+
+  lblsrv1enrgy.Caption := 'Ожидание обновления';
+
+ {  //Серверная № 2
 
   begin
     with lblsrv2enrgy.Font do // Подбираем шрифт
@@ -529,32 +574,33 @@ begin
       [rfReplaceAll, rfIgnoreCase]);
 
   IdSNMP1.Active := false;
-  //Конец опроса № 4
+  //Конец опроса № 4     }
+
   PlaySound(nil, 0, SND_PURGE);
   if IsTruoble then
   begin
-    lblsrv1enrgy.Width := 745;
+   { lblsrv1enrgy.Width := 745;
     lblsrv1temp.Width := 745;
     lblsrv1water.Width := 745;
     lblsrv1smoke.Width := 745;
     lblsrv2enrgy.Width := 745;
     lblsrv2temp.Width := 745;
     lblsrv2water.Width := 745;
-    lblsrv2smoke.Width := 745;
+    lblsrv2smoke.Width := 745;  }
     Phones.Visible := True;
     if SoundOn.Checked then
       CreateThread(nil, 0, @THEBEEP, nil, 0, Tid);
   end
   else
   begin
-    lblsrv1enrgy.Width := 1045;
+   { lblsrv1enrgy.Width := 1045;
     lblsrv1temp.Width := 1045;
     lblsrv1water.Width := 1045;
     lblsrv1smoke.Width := 1045;
     lblsrv2enrgy.Width := 1045;
     lblsrv2temp.Width := 1045;
     lblsrv2water.Width := 1045;
-    lblsrv2smoke.Width := 1045;
+    lblsrv2smoke.Width := 1045; }
     Phones.Visible := False;
   end;
 

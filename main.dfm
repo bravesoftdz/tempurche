@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 356
-  Top = 113
+  Left = 352
+  Top = 2
   BorderStyle = bsSingle
   Caption = #1052#1086#1085#1080#1090#1086#1088#1080#1085#1075
   ClientHeight = 882
@@ -30,131 +30,13 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
   end
-  object lbl2: TLabel
-    Left = 0
-    Top = 483
-    Width = 355
-    Height = 45
-    Caption = #1057#1077#1088#1074#1077#1088#1085#1072#1103' 2('#1057#1050#1051#1040#1044')'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -37
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
   object lblsrv1enrgy: TLabel
     Left = 0
-    Top = 43
+    Top = 832
     Width = 745
-    Height = 110
+    Height = 49
     AutoSize = False
-    Caption = #1069#1083#1077#1082#1090#1088#1086#1087#1080#1090#1072#1085#1080#1077' '#1089#1077#1088#1074#1077#1088#1085#1086#1081' 1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -32
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    WordWrap = True
-  end
-  object lblsrv1temp: TLabel
-    Left = 0
-    Top = 153
-    Width = 745
-    Height = 110
-    AutoSize = False
-    Caption = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072' '#1089#1077#1088#1074#1077#1088#1085#1086#1081' 1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -32
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    WordWrap = True
-  end
-  object lblsrv2enrgy: TLabel
-    Left = 0
-    Top = 528
-    Width = 745
-    Height = 110
-    AutoSize = False
-    Caption = #1069#1083#1077#1082#1090#1088#1086#1087#1080#1090#1072#1085#1080#1077' '#1089#1077#1088#1074#1077#1088#1085#1086#1081' 2'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -32
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    WordWrap = True
-  end
-  object lblsrv2temp: TLabel
-    Left = 0
-    Top = 638
-    Width = 745
-    Height = 110
-    AutoSize = False
-    Caption = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072' '#1089#1077#1088#1074#1077#1088#1085#1086#1081' 2'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -32
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    WordWrap = True
-  end
-  object lblsrv1smoke: TLabel
-    Left = 0
-    Top = 263
-    Width = 745
-    Height = 110
-    AutoSize = False
-    Caption = #1047#1072#1076#1099#1084#1083#1077#1085#1080#1077' '#1089#1077#1088#1074#1077#1088#1085#1086#1081' 1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -32
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    WordWrap = True
-  end
-  object lblsrv1water: TLabel
-    Left = 0
-    Top = 373
-    Width = 745
-    Height = 110
-    AutoSize = False
-    Caption = #1053#1072#1074#1086#1076#1085#1077#1085#1080#1077' '#1089#1077#1088#1074#1077#1088#1085#1086#1081' 1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -32
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    WordWrap = True
-  end
-  object lblsrv2smoke: TLabel
-    Left = 1
-    Top = 748
-    Width = 745
-    Height = 110
-    AutoSize = False
-    Caption = #1047#1072#1076#1099#1084#1083#1077#1085#1080#1077' '#1089#1077#1088#1074#1077#1088#1085#1086#1081' 2'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -32
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    WordWrap = True
-  end
-  object lblsrv2water: TLabel
-    Left = 0
-    Top = 859
-    Width = 745
-    Height = 110
-    AutoSize = False
-    Caption = #1053#1072#1074#1086#1076#1085#1077#1085#1080#1077' '#1089#1077#1088#1074#1077#1088#1085#1086#1081' 2'
+    Caption = #1054#1078#1080#1076#1072#1085#1080#1077' '#1086#1073#1085#1086#1074#1083#1077#1085#1080#1103
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -32
@@ -189,10 +71,10 @@ object Form1: TForm1
   end
   object Phones: TRichEdit
     Left = 746
-    Top = 34
+    Top = 48
     Width = 300
-    Height = 924
-    BorderStyle = bsNone
+    Height = 910
+    BorderWidth = 1
     Color = clBtnFace
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clMaroon
@@ -211,8 +93,8 @@ object Form1: TForm1
     TabOrder = 2
   end
   object btn1: TButton
-    Left = 421
-    Top = 13
+    Left = 357
+    Top = 5
     Width = 75
     Height = 25
     Caption = 'btn1'
@@ -221,16 +103,17 @@ object Form1: TForm1
     OnClick = btn1Click
   end
   object Alerts: TRichEdit
-    Left = 568
-    Top = 280
-    Width = 329
-    Height = 321
+    Left = 0
+    Top = 48
+    Width = 745
+    Height = 785
+    Color = clBtnFace
     Lines.Strings = (
       'Alerts')
     TabOrder = 4
   end
   object IdSNMP1: TIdSNMP
-    ReceiveTimeout = 500
+    ReceiveTimeout = 1000
     Community = 'public'
     Left = 661
     Top = 65535
